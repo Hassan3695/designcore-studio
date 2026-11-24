@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101010">
+<title>DESIGNCORE STUDIO</title>
+<style>
+:root{--gold:#d4af37;--bg:#101010;--panel:#191919;--muted:#a8a8a8;--line:#333}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 0%,#292313 0,transparent 32%),var(--bg);color:#f5f1e6;font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+header{padding:24px 5%;border-bottom:1px solid #ffffff18;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:21px;font-weight:800;letter-spacing:1.5px;color:var(--gold)}
+.brand small{display:block;color:#aaa;font-size:11px;letter-spacing:2px;margin-top:5px}
+header .tag{color:#aaa;font-size:12px}
+main{width:min(1200px,92%);margin:28px auto 55px}
+.intro{text-align:center;margin-bottom:26px}
+h1{font-size:clamp(25px,4vw,38px);margin:0 0 9px}
+h1 span{color:var(--gold)}
+.intro p{color:var(--muted);margin:0;font-size:14px}
+.layout{display:grid;grid-template-columns:minmax(280px, .9fr) minmax(300px,1.1fr);gap:22px;align-items:start}
+.panel{background:linear-gradient(145deg,#1d1d1d,#151515);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 15px 45px #0005}
+.panel h2{font-size:17px;margin:0 0 18px;color:var(--gold)}
+.types{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:20px}
+.type{border:1px solid #45413a;background:#222;color:#eee;padding:12px 8px;border-radius:10px;cursor:pointer;font:inherit;font-size:13px;transition:.2s}
+.type.active,.type:hover{border-color:var(--gold);background:#3a3018;color:#f7dc7a}
+.field{margin:13px 0}
+label{display:block;color:#ccc;font-size:12px;margin-bottom:7px}
+input{width:100%;background:#101010;border:1px solid #3b3b3b;border-radius:9px;padding:12px;color:#fff;font:inherit;outline:none}
+input:focus{border-color:var(--gold);box-shadow:0 0 0 2px #d4af3720}
+.hint{font-size:11px;color:#888;margin-top:6px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}
+button.action{border:0;border-radius:10px;padding:13px 10px;font:inherit;font-size:13px;font-weight:bold;cursor:pointer;transition:.2s}
+.primary{background:var(--gold);color:#17130a}.secondary{background:#292929;color:#f5f1e6;border:1px solid #555!important}
+button.action:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.preview-wrap{position:sticky;top:18px}
+.preview-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.preview-head h2{margin:0;color:var(--gold);font-size:17px}
+.live{font-size:11px;color:#a8d8a8}
+.invite{min-height:480px;border:1px solid #b99839;border-radius:14px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:linear-gradient(145deg,#211b0e,#111 55%,#29200d)}
+.invite:before,.invite:after{content:"✦";position:absolute;color:#d4af3755;font-size:65px}
+.invite:before{top:15px;right:18px}.invite:after{bottom:15px;left:18px}
+.ornament{color:var(--gold);font-size:26px;letter-spacing:10px;margin-bottom:17px}
+.invite .eyebrow{color:#e4cb78;font-size:12px;letter-spacing:3px;margin-bottom:16px}
+.invite h3{font-size:clamp(26px,4vw,38px);color:var(--gold);margin:0 0 13px;line-height:1.4}
+.invite .message{font-size:15px;color:#eee;line-height:2;margin:0 0 17px;max-width:420px}
+.details{border-top:1px solid #d4af3766;border-bottom:1px solid #d4af3766;padding:14px 8px;width:90%;margin:6px 0 16px;line-height:2;color:#e8dfc5;font-size:13px}
+.host{font-size:18px;color:#f4d978;font-weight:bold;margin-top:4px}
+.footer-note{font-size:11px;color:#aaa;margin-top:15px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#d4af37;color:#17130a;padding:11px 18px;border-radius:30px;font-size:13px;font-weight:bold;display:none;z-index:5}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.preview-wrap{position:static}.invite{min-height:420px}header{padding:18px 5%}}
+@media(max-width:390px){.panel{padding:16px}.actions{grid-template-columns:1fr}.types{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">DESIGNCORE STUDIO<small>CREATE • PERSONALIZE • SHARE</small></div>
+  <div class="tag">استوديو تصميم الدعوات والبطاقات</div>
+</header>
+<main>
+  <section class="intro">
+    <h1>اصنع مناسبتك <span>بلمستك الخاصة</span></h1>
+    <p>املأ المعلومات، اختر نوع التصميم، وشاهد النتيجة مباشرة.</p>
+  </section>
+  <section class="layout">
+    <div class="panel">
+      <h2>01 — معلومات التصميم</h2>
+      <div class="types" id="types">
+        <button class="type active" data-type="wedding">💍 زفاف</button>
+        <button class="type" data-type="birthday">🎂 عيد ميلاد</button>
+        <button class="type" data-type="sbou3">🍼 سبوع</button>
+        <button class="type" data-type="opening">🏬 افتتاح محل</button>
+        <button class="type" data-type="business">✦ كارت فيزيت</button>
+      </div>
+      <div class="field"><label for="name">الاسم / أسماء أصحاب المناسبة</label><input id="name" placeholder="مثال: سلمى وأمين" value="سلمى وأمين"></div>
+      <div class="field"><label for="date">التاريخ</label><input id="date" type="date"></div>
+      <div class="field"><label for="place">المكان / العنوان</label><input id="place" placeholder="مثال: قاعة الأفراح - مكناس"></div>
+      <div class="field"><label for="whatsapp">رقم واتساب (مع رمز الدولة)</label><input id="whatsapp" type="tel" inputmode="tel" placeholder="مثال: 2126XXXXXXXX"></div>
+      <div class="hint">أدخل الرقم بصيغة دولية، بدون علامة +، لتسهيل فتح المحادثة.</div>
+      <div class="actions">
+        <button class="action primary" id="wa">مشاركة عبر واتساب</button>
+        <button class="action secondary" id="copy">نسخ كود HTML</button>
+        <button class="action secondary" id="download" style="grid-column:1/-1">تحميل ملف HTML</button>
+      </div>
+    </div>
+    <div class="panel preview-wrap">
+      <div class="preview-head"><h2>02 — المعاينة الحية</h2><span class="live">● مباشر</span></div>
+      <div class="invite" id="invite">
+        <div class="ornament">✧ ❖ ✧</div>
+        <div class="eyebrow" id="eyebrow">دعوة زفاف</div>
+        <h3 id="previewName">سلمى وأمين</h3>
+        <p class="message" id="message">بكل الحب والفرح، يشرفنا دعوتكم لمشاركتنا أجمل لحظات العمر. حضوركم يزيد فرحتنا اكتمالاً.</p>
+        <div class="details">
+          <div>◈ التاريخ: <span id="previewDate">سيتم تحديده</span></div>
+          <div>◈ المكان: <span id="previewPlace">سيتم تحديده</span></div>
+        </div>
+        <div class="host" id="host">حضوركم يسعدنا</div>
+        <div class="footer-note">بكل الود والتقدير • DESIGNCORE STUDIO</div>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script>
+(() => {
+const $ = id => document.getElementById(id);
+const templates = {
+ wedding:{eyebrow:"دعوة زفاف",message:"بكل الحب والفرح، يشرفنا دعوتكم لمشاركتنا أجمل لحظات العمر. حضوركم يزيد فرحتنا اكتمالاً.",host:"حضوركم يسعدنا"},
+ birthday:{eyebrow:"دعوة عيد ميلاد",message:"عام جديد من الفرح والذكريات الجميلة! يسعدنا أن تكونوا معنا لنحتفل بهذه المناسبة المميزة.",host:"ننتظركم بكل حب"},
+ sbou3:{eyebrow:"دعوة سبوع",message:"بفرحة تملأ قلوبنا، ندعوكم لمشاركتنا الاحتفال بقدوم مولودنا الجديد. نسأل الله أن يجعله من مواليد السعادة.",host:"فرحتنا تكمل بوجودكم"},
+ opening:{eyebrow:"دعوة افتتاح",message:"يسعدنا دعوتكم لحضور افتتاح مشروعنا الجديد. تشريفكم لنا ودعمكم مصدر فخر واعتزاز.",host:"مرحبا بكم"},
+ business:{eyebrow:"بطاقة أعمال",message:"نسعد بالتواصل معكم وتقديم خدماتنا. الجودة والاحترافية والثقة هي أساس عملنا.",host:"يسعدنا تعاونكم"}
+};
+let selected="wedding";
+const escapeHTML = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function values(){return {name:$("name").value.trim()||"اسم المناسبة",date:$("date").value,place:$("place").value.trim()||"سيتم تحديده",whatsapp:$("whatsapp").value.trim()};}
+function prettyDate(value){if(!value)return "سيتم تحديده";const d=new Date(value+"T12:00:00");return new Intl.DateTimeFormat("ar-MA",{year:"numeric",month:"long",day:"numeric"}).format(d);}
+function update(){
+ const v=values(),t=templates[selected];
+ $("eyebrow").textContent=t.eyebrow;$("previewName").textContent=v.name;
+ $("message").textContent=t.message;$("previewDate").textContent=prettyDate(v.date);
+ $("previewPlace").textContent=v.place;$("host").textContent=t.host;
+}
+function buildHTML(){
+ const v=values(),t=templates[selected];
+ const date=escapeHTML(prettyDate(v.date)),name=escapeHTML(v.name),place=escapeHTML(v.place);
+ return `<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeHTML(t.eyebrow)}</title><style>body{margin:0;background:#101010;color:#f5f1e6;font-family:Tahoma,Arial,sans-serif;display:grid;place-items:center;min-height:100vh;padding:18px;box-sizing:border-box}.card{max-width:560px;width:100%;min-height:440px;box-sizing:border-box;border:1px solid #d4af37;border-radius:16px;padding:42px 24px;text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(145deg,#211b0e,#111 55%,#29200d)}.gold{color:#d4af37}.eyebrow{letter-spacing:3px;font-size:13px;color:#e4cb78}h1{font-size:36px;line-height:1.5;margin:18px 0}p{line-height:2}.details{border-block:1px solid #8e742e;padding:16px;width:90%;line-height:2;color:#e8dfc5;font-size:14px}.host{color:#f4d978;font-size:19px;margin-top:22px}</style></head><body><main class="card"><div class="gold">✧ ❖ ✧</div><div class="eyebrow">${escapeHTML(t.eyebrow)}</div><h1 class="gold">${name}</h1><p>${escapeHTML(t.message)}</p><div class="details">◈ التاريخ: ${date}<br>◈ المكان: ${place}</div><div class="host">${escapeHTML(t.host)}</div></main></body></html>`;
+}
+function toast(msg){$("toast").textContent=msg;$("toast").style.display="block";setTimeout(()=>$("toast").style.display="none",2200);}
+$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-type]");if(!b)return;selected=b.dataset.type;document.querySelectorAll(".type").forEach(x=>x.classList.toggle("active",x===b));update();});
+["name","date","place","whatsapp"].forEach(id=>$(id).addEventListener("input",update));
+$("copy").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(buildHTML());toast("تم نسخ كود HTML");}catch(e){const ta=document.createElement("textarea");ta.value=buildHTML();document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();toast("تم نسخ كود HTML");}});
+$("download").addEventListener("click",()=>{const blob=new Blob([buildHTML()],{type:"text/html;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="designcore-invitation.html";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);toast("بدأ تحميل ملف HTML");});
+$("wa").addEventListener("click",()=>{const v=values();if(!v.whatsapp){toast("أدخل رقم واتساب أولاً");$("whatsapp").focus();return;}const t=templates[selected];const text=`${t.eyebrow}\n${v.name}\n${t.message}\nالتاريخ: ${prettyDate(v.date)}\nالمكان: ${v.place}`;const phone=v.whatsapp.replace(/[^\d]/g,"");window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(text),"_blank","noopener");});
+update();
+})();
+</script>
+</body>
+</html>
